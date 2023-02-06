@@ -1,8 +1,8 @@
 #github.com/ichott15/wordle
 
-from wordle_utils import *
+import time
 from random import *
-import doctest
+
 
 
 
@@ -16,6 +16,18 @@ CHAR_GRAY = '\x1b[6;30;47m'
 CHAR_END = '\x1b[0m'
 
 
+def load_words():
+    with open('wordle-dictionary.txt') as word_file:
+        valid_words = set(word_file.read().split())
+
+    return valid_words
+
+def input_and_hide(prompt):
+    input_text = input("         " + prompt + "\r")
+    time.sleep(1)
+    print("   " * 20)
+
+    return input_text
 
 #checks to see if word inputed is in the list of VALID_WORDS
 def is_valid_word(word_input, list_words):
